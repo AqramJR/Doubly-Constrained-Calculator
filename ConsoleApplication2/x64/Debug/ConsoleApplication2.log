@@ -1,0 +1,5 @@
+﻿  ConsoleApplication.cpp
+E:\Civil\3rd Year\1st\Transpotation\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(37,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\Civil\3rd Year\1st\Transpotation\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(103,27): error C2143: syntax error: missing ';' before ':'
+E:\Civil\3rd Year\1st\Transpotation\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(103,27): error C2059: syntax error: ':'
+E:\Civil\3rd Year\1st\Transpotation\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(134,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
