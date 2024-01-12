@@ -1,5 +1,29 @@
 ﻿  ConsoleApplication.cpp
-E:\Civil\3rd Year\1st\Transpotation\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(37,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-E:\Civil\3rd Year\1st\Transpotation\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(103,27): error C2143: syntax error: missing ';' before ':'
-E:\Civil\3rd Year\1st\Transpotation\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(103,27): error C2059: syntax error: ':'
-E:\Civil\3rd Year\1st\Transpotation\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(134,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\Civil\3rd Year\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(37,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\Civil\3rd Year\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(134,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26): warning C4244:         ]
+  (compiling source file 'ConsoleApplication.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26):
+  the template instantiation context (the oldest one first) is
+  	E:\Civil\3rd Year\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(327,35):
+  	see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<double>>>,int>(const _InIt,const _InIt,_Ty)' being compiled
+          with
+          [
+              _Ty=int,
+              _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<double>>>
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(46,17):
+  	see reference to function template instantiation '_Ty std::accumulate<_InIt,_Ty,std::plus<void>>(const _InIt,const _InIt,_Ty,_Fn)' being compiled
+          with
+          [
+              _Ty=int,
+              _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<double>>>,
+              _Fn=std::plus<void>
+          ]
+  
+  LINK : E:\Civil\3rd Year\ConsoleApplication2\x64\Debug\ConsoleApplication.exe not found or not built by the last incremental link; performing full link
+  ConsoleApplication2.vcxproj -> E:\Civil\3rd Year\ConsoleApplication2\x64\Debug\ConsoleApplication.exe
