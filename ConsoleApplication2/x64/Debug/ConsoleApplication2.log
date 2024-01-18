@@ -1,15 +1,17 @@
-﻿  ConsoleApplication.cpp
-E:\Civil\3rd Year\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(37,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-E:\Civil\3rd Year\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(134,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (ConsoleApplication.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Main.cpp
+C:\Users\Anasa\Documents\GitHub\Doubly-Constrained-Calculator\ConsoleApplication2\Main.cpp(69,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Anasa\Documents\GitHub\Doubly-Constrained-Calculator\ConsoleApplication2\Main.cpp(166,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Anasa\Documents\GitHub\Doubly-Constrained-Calculator\ConsoleApplication2\Main.cpp(345,23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26): warning C4244:         with
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26): warning C4244:         [
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26): warning C4244:             _Ty=int
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26): warning C4244:         ]
-  (compiling source file 'ConsoleApplication.cpp')
+  (compiling source file 'Main.cpp')
   C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\numeric(35,26):
   the template instantiation context (the oldest one first) is
-  	E:\Civil\3rd Year\ConsoleApplication2\ConsoleApplication2\ConsoleApplication.cpp(327,35):
+  	C:\Users\Anasa\Documents\GitHub\Doubly-Constrained-Calculator\ConsoleApplication2\Main.cpp(429,35):
   	see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<double>>>,int>(const _InIt,const _InIt,_Ty)' being compiled
           with
           [
@@ -25,5 +27,4 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.3313
               _Fn=std::plus<void>
           ]
   
-  LINK : E:\Civil\3rd Year\ConsoleApplication2\x64\Debug\ConsoleApplication.exe not found or not built by the last incremental link; performing full link
-  ConsoleApplication2.vcxproj -> E:\Civil\3rd Year\ConsoleApplication2\x64\Debug\ConsoleApplication.exe
+  ConsoleApplication2.vcxproj -> C:\Users\Anasa\Documents\GitHub\Doubly-Constrained-Calculator\x64\Debug\Doubly Constrained Calculator.exe

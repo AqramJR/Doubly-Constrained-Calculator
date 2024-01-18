@@ -129,22 +129,23 @@ void calculateFactors(const vector<vector<double>>& matrix, const vector<double>
 
         cout << endl;
     }
-
-    printGreen("production Factors (a):"), cout << endl;
-
-    for (int i = 0; i < productionFactors.size();++i) {
-        cout << "a" << i+1 << ": " << productionFactors[i] << endl;
-    }
-    cout << endl;
-
     
-    printGreen("attraction Factors (b):"), cout << endl;
-    for (int j = 0; j< attractionFactors.size();++j) {
-        cout << "b" << j + 1 << ": " << attractionFactors[j] << endl;
-    }
+    if (size <= 15) {
+        printGreen("production Factors (a):"), cout << endl;
 
-    cout << endl;
-    
+        for (int i = 0; i < productionFactors.size(); ++i) {
+            cout << "a" << i + 1 << ": " << productionFactors[i] << endl;
+        }
+        cout << endl;
+
+
+        printGreen("attraction Factors (b):"), cout << endl;
+        for (int j = 0; j < attractionFactors.size(); ++j) {
+            cout << "b" << j + 1 << ": " << attractionFactors[j] << endl;
+        }
+
+        cout << endl;
+    }
     printGreen("Production growth factor Error (a%): "), cout << productionError * 100 << "%" << endl;
     printGreen("Attraction growth factor error (b%): "), cout << attractionError * 100 << "%" << endl;
     cout << endl;
@@ -175,18 +176,19 @@ vector<vector<double>> calculateFutureMatrix(const vector<vector<double>>& matri
             resultMatrix[i][j] = matrix[i][j] * productionFactors[i] * attractionFactors[j];
         }
     }
+    
+    if (size <= 15) {
 
+        printGreen("Factors Matrix (a*b): "), cout << endl;
 
-    printGreen("Factors Matrix (a*b): "), cout << endl;
-
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            cout << productionFactors[i] * attractionFactors[j] << "    ";
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                cout << productionFactors[i] * attractionFactors[j] << "    ";
+            }
+            cout << endl;
         }
         cout << endl;
     }
-    cout << endl;
-
 
     return resultMatrix;
 }
@@ -274,6 +276,7 @@ void saveOutputs(const vector<vector<double>>& matrix) {
 int main() {
     int size;
     char choice;
+    int input;
     double error;
     vector<vector<double>> matrix;
     vector<double> productionSums;
@@ -286,111 +289,32 @@ int main() {
         Type("ID: 9180327", 10);
         Type("SEC.: 2", 10);
         Type("B.N.: 28", 10);
+        cout << "------------------------------------------------------------------------------"<< endl;
 
-        if (fs::exists(filePath)) {
-            cout << "Log file was found!" << endl;
-            cout << "Hint:You can use the log.txt to add Ur own example." << endl;
-            cout << "Do you want to load log file? (y/n): ";
+        cout << "1.Load from log" << endl;
+        cout << "2.generate a random matrix" << endl;
+        cout << "3.Enter the matrix manually" << endl;
+        cout << "Enter the number of your choice: ";
+        choice = _getch();
+        input = choice - '0';
+        system("cls");
 
-            choice = _getch();
-            cout << choice << endl;
+        switch (input)
+        {
+        case 1 : 
+            if (fs::exists(filePath)) {
+                cout << "Log file was found!" << endl;
+                cout << "Hint:You can use the log.txt to add Ur own example." << endl;
 
-
-            if (choice == 'y' || choice == 'Y') {
                 Applying(5, "Loading");
                 cout << endl;
                 matrix = loadinputs(size, productionSums, attractionSums);
                 cout << "size: " << size << endl;
-
-                cout << "matrix:" << endl;
-                for (int i = 0; i < size; ++i) {
-                    for (int j = 0; j < size; ++j) {
-                        cout << matrix[i][j] << "    ";
-                    }
-                    cout << endl;
+                if (size > 10)
+                {
+                    cout << "The size of the matrix (" << size << ") is too big.No output will be shown but will be saved in 'output.txt'";
                 }
-                cout << endl;
-
-                cout << "sum of production:" << endl;
-                for (int i = 0; i < size; ++i) {
-                    cout << productionSums[i] << endl;
-                }
-                cout << endl;
-
-                cout << "sum of attraction:" << endl;
-                for (int i = 0; i < size; ++i) {
-                    cout << attractionSums[i] << "      ";
-                }
-                cout << endl << endl;
-
-
-            }
-        
-            else if (choice == 'n' || choice == 'N') {
-
-                cout << "Do You want to generate a random matrix? (y/n): ";
-                choice = _getch();
-                cout << endl;
-
-                if (choice == 'n' || choice == 'N') {
-
-                    cout << "Enter the size of the matrix: ";
-                    cin >> size;
-
-                    matrix = vector<vector<double>>(size, vector<double>(size));
-
-                    cout << "Enter the matrix elements:" << endl;
-                    for (int i = 0; i < size; ++i) {
-                        for (int j = 0; j < size; ++j) {
-                            cout << "Enter element at (" << i + 1 << ", " << j + 1 << "): ";
-                            cin >> matrix[i][j];
-                        }
-                    }
-
-                    productionSums.resize(size);
-
-                    cout << "Enter the sum of production:" << endl;
-                    for (int i = 0; i < size; ++i) {
-                        cout << "Enter sum for production " << i + 1 << ": ";
-                        cin >> productionSums[i];
-                    }
-
-                    attractionSums.resize(size);
-
-                    cout << "Enter the sum of attraction:" << endl;
-                    for (int i = 0; i < size; ++i) {
-                        cout << "Enter sum for attraction " << i + 1 << ": ";
-                        cin >> attractionSums[i];
-                    }
-
-                    saveInputs(matrix, size, productionSums, attractionSums);
-                }
-
-                else if (choice == 'y' || choice == 'Y') {
-
-                    cout << "Enter the size of the matrix: ";
-                    cin >> size;
-
-                    matrix = vector<vector<double>>(size, vector<double>(size));
-                    srand(time(0));
-
-                    for (int i = 0; i < size; ++i) {
-                        for (int j = 0; j < size; ++j) {
-                            matrix[i][j] = generateRandomNumber();
-                        }
-                    }
-
-                    productionSums.resize(size);
-                    for (int i = 0; i < size; ++i) {
-                        productionSums[i] = generateRandomNumber();
-                    }
-
-                    attractionSums.resize(size);
-                    for (int i = 0; i < size; ++i) {
-                        attractionSums[i] = generateRandomNumber();
-                    }
-                    saveInputs(matrix, size, productionSums, attractionSums);
-
+                else {
                     cout << "matrix:" << endl;
                     for (int i = 0; i < size; ++i) {
                         for (int j = 0; j < size; ++j) {
@@ -411,76 +335,44 @@ int main() {
                         cout << attractionSums[i] << "      ";
                     }
                     cout << endl << endl;
-
                 }
             }
 
-        }
-        else {
-            printRed("Log file was NOT found!");
-            cout << endl << "Do You want to generate a random matrix? (y/n): ";
-            choice = _getch();
-            cout << endl;
+            else {
+                printRed("Log file was NOT found!");
+                continue;
+                //return to main menu
+            }
+            break;
 
-            if (choice == 'n' || choice == 'N') {
+        case 2 :
+            cout << "Enter the size of the matrix: ";
+            cin >> size;
 
-                cout << "Enter the size of the matrix: ";
-                cin >> size;
+            matrix = vector<vector<double>>(size, vector<double>(size));
+            srand(time(0));
 
-                matrix = vector<vector<double>>(size, vector<double>(size));
-
-                cout << "Enter the matrix elements:" << endl;
-                for (int i = 0; i < size; ++i) {
-                    for (int j = 0; j < size; ++j) {
-                        cout << "Enter element at (" << i + 1 << ", " << j + 1 << "): ";
-                        cin >> matrix[i][j];
-                    }
+            for (int i = 0; i < size; ++i) {
+                for (int j = 0; j < size; ++j) {
+                    matrix[i][j] = generateRandomNumber();
                 }
-
-                productionSums.resize(size);
-
-                cout << "Enter the sum of production:" << endl;
-                for (int i = 0; i < size; ++i) {
-                    cout << "Enter sum for production " << i + 1 << ": ";
-                    cin >> productionSums[i];
-                }
-
-                attractionSums.resize(size);
-
-                cout << "Enter the sum of attraction:" << endl;
-                for (int i = 0; i < size; ++i) {
-                    cout << "Enter sum for attraction " << i + 1 << ": ";
-                    cin >> attractionSums[i];
-                }
-
-                saveInputs(matrix, size, productionSums, attractionSums);
             }
 
-            else if (choice == 'y' || choice == 'Y') {
+            productionSums.resize(size);
+            for (int i = 0; i < size; ++i) {
+                productionSums[i] = generateRandomNumber();
+            }
 
-                cout << "Enter the size of the matrix: ";
-                cin >> size;
-
-                matrix = vector<vector<double>>(size, vector<double>(size));
-                srand(time(0));
-
-                for (int i = 0; i < size; ++i) {
-                    for (int j = 0; j < size; ++j) {
-                        matrix[i][j] = generateRandomNumber();
-                    }
-                }
-
-                productionSums.resize(size);
-                for (int i = 0; i < size; ++i) {
-                    productionSums[i] = generateRandomNumber();
-                }
-
-                attractionSums.resize(size);
-                for (int i = 0; i < size; ++i) {
-                    attractionSums[i] = generateRandomNumber();
-                }
-                saveInputs(matrix, size, productionSums, attractionSums);
-
+            attractionSums.resize(size);
+            for (int i = 0; i < size; ++i) {
+                attractionSums[i] = generateRandomNumber();
+            }
+            saveInputs(matrix, size, productionSums, attractionSums);
+            if (size > 15)
+            {
+                cout << "The size of the matrix (" << size << ") is too large, and no output will be displayed; however, it will be saved in 'output.txt'.'" <<endl;
+            }
+            else {
                 cout << "matrix:" << endl;
                 for (int i = 0; i < size; ++i) {
                     for (int j = 0; j < size; ++j) {
@@ -501,11 +393,46 @@ int main() {
                     cout << attractionSums[i] << "      ";
                 }
                 cout << endl << endl;
+            }
+            break;
+        case 3 :
+            cout << "Enter the size of the matrix: ";
+            cin >> size;
 
+            matrix = vector<vector<double>>(size, vector<double>(size));
+
+            cout << "Enter the matrix elements:" << endl;
+            for (int i = 0; i < size; ++i) {
+                for (int j = 0; j < size; ++j) {
+                    cout << "Enter element at (" << i + 1 << ", " << j + 1 << "): ";
+                    cin >> matrix[i][j];
+                }
             }
 
-        }
+            productionSums.resize(size);
 
+            cout << "Enter the sum of production:" << endl;
+            for (int i = 0; i < size; ++i) {
+                cout << "Enter sum for production " << i + 1 << ": ";
+                cin >> productionSums[i];
+            }
+
+            attractionSums.resize(size);
+
+            cout << "Enter the sum of attraction:" << endl;
+            for (int i = 0; i < size; ++i) {
+                cout << "Enter sum for attraction " << i + 1 << ": ";
+                cin >> attractionSums[i];
+            }
+
+            saveInputs(matrix, size, productionSums, attractionSums);
+            break;
+
+        default:
+            cout << "Invalid choice." << std::endl;
+            continue;
+            break;
+        }
 
         //Check balance
         Type("Checking production & attraction balancing...........", 10);
@@ -540,12 +467,16 @@ int main() {
                 printGreen("Correction applied.");
                 cout << endl<<endl;
 
-                printGreen("Corrected values: ");
-                cout << endl;
-                for (int i = 0; i < size; ++i) {
-                    cout << attractionSums[i] << "      ";
+                if (size <= 15)
+                {
+                    printGreen("Corrected values: ");
+                    cout << endl;
+                    for (int i = 0; i < size; ++i) {
+                        cout << attractionSums[i] << "      ";
+                    }
+                    cout << endl << endl;
                 }
-                cout << endl<<endl;
+
 
 
 
@@ -568,29 +499,36 @@ int main() {
         error = error / 100;
 
         vector<vector<double>> resultMatrix = calculateFutureMatrix(matrix, productionSums, attractionSums, error);
+        if (size <= 15) {
+            printGreen("The result Matrix:"), cout << endl;
 
-        printGreen("The result Matrix:"), cout << endl;
-
-        for (const auto& row : resultMatrix) {
-            for (double element : row) {
-                cout << element << "    ";
+            for (const auto& row : resultMatrix) {
+                for (double element : row) {
+                    cout << element << "    ";
+                }
+                cout << endl;
             }
-            cout << endl;
-        }
-        cout << "Do Want to save the result Matrix? (y/n): ";
-        choice = _getch();
-        cout << choice << endl;
 
-        if (choice == 'y' || choice == 'Y')
-        {
+            cout << "Do Want to save the result Matrix? (y/n): ";
+            choice = _getch();
+            cout << choice << endl;
+
+            if (choice == 'y' || choice == 'Y')
+            {
+                saveOutputs(resultMatrix);
+                Applying(5, "Saving");
+                Type("The result Matrix saved in 'output.txt' successfully! ", 20);
+                cout << endl;
+
+            }
+
+        }
+        if (size > 15) {
             saveOutputs(resultMatrix);
             Applying(5, "Saving");
             Type("The result Matrix saved in 'output.txt' successfully! ", 20);
             cout << endl;
-
         }
-
-        
         
 
         cout << "Press 'E' to exit or 'R' to reload the program...  ";
